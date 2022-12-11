@@ -49,9 +49,22 @@ def draw_tune_screen(screen):
     title_rectangle = title_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 150))
     screen.blit(title_surface, title_rectangle)
-    button_font = pygame.font.Font(None, 70)
-    pass
+    button_font = pygame.font.Font(None, 60)
 
+    main_menu_text = button_font.render('Main Menu', 0, (255, 255, 255))
+    main_menu_surface = pygame.Surface((main_menu_text.get_size()[0] + 20, main_menu_text.get_size()[1] + 20))
+    main_menu_surface.fill(LINE_COLOR)
+    main_menu_surface.blit(main_menu_text, (10, 10))
+    main_menu_rectangle = main_menu_surface.get_rect(center=(180, 560))
+    screen.blit(main_menu_surface, main_menu_rectangle)
+
+    quit_text = button_font.render('Quit', 0, (255, 255, 255))
+    quit_surface = pygame.Surface((quit_text.get_size()[0] + 20, quit_text.get_size()[1] + 20))
+    quit_surface.fill(LINE_COLOR)
+    quit_surface.blit(quit_text, (10, 10))
+    quit_rectangle = quit_surface.get_rect(center=(450, 560))
+    screen.blit(quit_surface, quit_rectangle)
+    return main_menu_rectangle, quit_rectangle
 
 if __name__ == '__main__':
     while True:
@@ -70,8 +83,13 @@ if __name__ == '__main__':
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos
                     if buttons[0].collidepoint(event.pos):
-                        pass
+                        game_buttons = draw_tune_screen(screen)
+                        pygame.display.flip()
+                        pygame.time.delay(1000)
+                        if game_buttons[0].collidepoint(event.pos):
+                            restart = True
+                        if game_buttons[1].collidepoint(event.pos):
+                            sys.exit()
+
                     if buttons[1].collidepoint(event.pos):
                         sys.exit()
-
-
