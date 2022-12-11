@@ -22,32 +22,56 @@ def draw_start_menu(screen):
     quit_text = button_font.render("Quit", 0, (255, 255, 255))
 
     # Initialize button background color and text
-    easy_surface = pygame.Surface((start_text.get_size()[0] + 20, start_text.get_size()[1] + 20))
-    easy_surface.fill(LINE_COLOR)
-    easy_surface.blit(start_text, (10, 10))
+    start_surface = pygame.Surface((start_text.get_size()[0] + 20, start_text.get_size()[1] + 20))
+    start_surface.fill(LINE_COLOR)
+    start_surface.blit(start_text, (10, 10))
 
-    med_surface = pygame.Surface((quit_text.get_size()[0] + 20, quit_text.get_size()[1] + 20))
-    med_surface.fill(LINE_COLOR)
-    med_surface.blit(quit_text, (10, 10))
+    quit_surface = pygame.Surface((quit_text.get_size()[0] + 20, quit_text.get_size()[1] + 20))
+    quit_surface.fill(LINE_COLOR)
+    quit_surface.blit(quit_text, (10, 10))
 
     # Initialize button rectangle
-    easy_rectangle = easy_surface.get_rect(
+    start_rectangle = start_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 25))
-    med_rectangle = med_surface.get_rect(
+    quit_rectangle = quit_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 100))
 
     # Draw buttons
-    screen.blit(easy_surface, easy_rectangle)
-    screen.blit(med_surface, med_rectangle)
+    screen.blit(start_surface, start_rectangle)
+    screen.blit(quit_surface, quit_rectangle)
+    return start_rectangle, quit_rectangle
+
+
+def draw_tune_screen(screen):
+    screen.fill(BG_COLOR)
+    title_font = pygame.font.Font(None, 80)
+    title_surface = title_font.render("Town Tune", 0, LINE_COLOR)
+    title_rectangle = title_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 150))
+    screen.blit(title_surface, title_rectangle)
+    button_font = pygame.font.Font(None, 70)
+    pass
 
 
 if __name__ == '__main__':
-    pygame.init()
-    pygame.display.set_caption('Animal Crossing Town Tune')
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    screen.fill(BG_COLOR)
-    draw_start_menu(screen)
-    pygame.display.flip()
     while True:
-        pygame.time.delay(1000)
+        pygame.init()
+        pygame.display.set_caption('Animal Crossing Town Tune')
+        screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        screen.fill(BG_COLOR)
+        buttons = draw_start_menu(screen)
+        pygame.display.flip()
+        restart = False
+
+        while not restart:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    x, y = event.pos
+                    if buttons[0].collidepoint(event.pos):
+                        pass
+                    if buttons[1].collidepoint(event.pos):
+                        sys.exit()
+
 
