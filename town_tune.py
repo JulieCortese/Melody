@@ -81,6 +81,7 @@ def draw_tune_screen(screen):
 def draw_sound_arr(screen):
     x_start = WIDTH // 2 - 250
     y_start = HEIGHT // 2 - 120
+    note_font = pygame.font.Font(None, 50)
     for i in range(len(sound_arr)):
         for j in range(len(sound_arr[0])):
             pygame.draw.line(screen, (0, 0, 0), (x_start + j*100, y_start + i*150), (x_start + j*100, y_start + i*150), 50)
