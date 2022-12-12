@@ -39,17 +39,27 @@ def draw_start_menu(screen):
     # Draw buttons
     screen.blit(start_surface, start_rectangle)
     screen.blit(quit_surface, quit_rectangle)
-    return start_rectangle, quit_rectangle
+    # Loop so the buttons work
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if start_rectangle.collidepoint(event.pos):
+                    mode = 1  # start game
+                    return mode
+                elif quit_rectangle.collidepoint(event.pos):
+                    sys.exit()
+        pygame.display.update()
 
 
 def draw_tune_screen(screen):
     screen.fill(BG_COLOR)
     title_font = pygame.font.Font(None, 80)
     title_surface = title_font.render("Town Tune", 0, LINE_COLOR)
+    pygame.draw.line(screen, LINE_COLOR, (10, 90), (590, 90), 5)
     title_rectangle = title_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 - 150))
+        center=(WIDTH // 2, HEIGHT // 2 - 250))
     screen.blit(title_surface, title_rectangle)
-    button_font = pygame.font.Font(None, 60)
+    button_font = pygame.font.Font(None, 50)
 
     main_menu_text = button_font.render('Main Menu', 0, (255, 255, 255))
     main_menu_surface = pygame.Surface((main_menu_text.get_size()[0] + 20, main_menu_text.get_size()[1] + 20))
@@ -64,7 +74,18 @@ def draw_tune_screen(screen):
     quit_surface.blit(quit_text, (10, 10))
     quit_rectangle = quit_surface.get_rect(center=(450, 560))
     screen.blit(quit_surface, quit_rectangle)
+    pygame.display.update()
     return main_menu_rectangle, quit_rectangle
+
+
+def draw_sound_arr(screen):
+    x_start = WIDTH // 2 - 250
+    y_start = HEIGHT // 2 - 120
+    for i in range(len(sound_arr)):
+        for j in range(len(sound_arr[0])):
+            pygame.draw.line(screen, (0, 0, 0), (x_start + j*100, y_start + i*150), (x_start + j*100, y_start + i*150), 50)
+            # need to figure out how to display the sound array itself
+            # need to add code to display the options for each sound
 
 if __name__ == '__main__':
     while True:
@@ -72,9 +93,12 @@ if __name__ == '__main__':
         pygame.display.set_caption('Animal Crossing Town Tune')
         screen = pygame.display.set_mode((WIDTH, HEIGHT))
         screen.fill(BG_COLOR)
-        buttons = draw_start_menu(screen)
-        pygame.display.flip()
+        start = draw_start_menu(screen)
+        buttons = draw_tune_screen(screen)
         restart = False
+        sound_arr = [['-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-']]
+        draw_sound_arr(screen)
+        pygame.display.update()
 
         while not restart:
             for event in pygame.event.get():
@@ -83,13 +107,6 @@ if __name__ == '__main__':
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos
                     if buttons[0].collidepoint(event.pos):
-                        game_buttons = draw_tune_screen(screen)
-                        pygame.display.flip()
-                        pygame.time.delay(1000)
-                        if game_buttons[0].collidepoint(event.pos):
-                            restart = True
-                        if game_buttons[1].collidepoint(event.pos):
-                            sys.exit()
-
-                    if buttons[1].collidepoint(event.pos):
+                        restart = True
+                    elif buttons[1].collidepoint(event.pos):
                         sys.exit()
