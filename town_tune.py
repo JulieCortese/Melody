@@ -3,6 +3,7 @@ from constants import *
 from notes import *
 from sound_arr import *
 
+
 def draw_start_menu(screen):
     # Initialize title font
     start_title_font = pygame.font.Font(None, 60)
@@ -78,24 +79,6 @@ def draw_tune_screen(screen):
     return main_menu_rectangle, quit_rectangle
 
 
-
-
-def draw_sound_arr(screen):
-    x_start = WIDTH // 2 - 250
-    y_start = HEIGHT // 2 - 120
-    note_font = pygame.font.Font(None, 50)
-    for i in range(len(sound_arr)):
-        for j in range(len(sound_arr[0])):
-            pygame.draw.line(screen, (0, 0, 0), (x_start + j*100, y_start + i*150), (x_start + j*100, y_start + i*150), 50)
-            # need to figure out how to display the sound array itself
-            # need to add code to display the options for each sound
-    # make box for note options to be in
-    pygame.draw.line(screen, (0, 0, 0), (20, 400), (580, 400))
-    pygame.draw.line(screen, (0, 0, 0), (20, 400), (20, 460))
-    pygame.draw.line(screen, (0, 0, 0), (20, 460), (580, 460))
-    pygame.draw.line(screen, (0, 0, 0), (580, 460), (580, 400))
-
-
 if __name__ == '__main__':
     while True:
         pygame.init()
@@ -105,7 +88,7 @@ if __name__ == '__main__':
         start = draw_start_menu(screen)
         buttons = draw_tune_screen(screen)
         restart = False
-        sound_arr = [['-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-']]
+        sound_arr = SoundArr()
         draw_sound_arr(screen)
         pygame.display.update()
 
