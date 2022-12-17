@@ -3,10 +3,10 @@ from constants import *
 
 
 class Note:
-    def __init__(self, note, x, y, screen):
+    def __init__(self, note, row, col, screen):
         self.note = note
-        self.x = x
-        self.y = y
+        self.row = row
+        self.col = col
         self.screen = screen
 
     def set_note_val(self, note):
@@ -18,5 +18,5 @@ class Note:
             self.note = ''  # changes 0s to empty strings so nothing displays
         num_surf = number_font.render(str(self.note), 0, (0, 0, 0))
         chip_rect = num_surf.get_rect(
-            center=(SQUARE_SIZE * self.y + SQUARE_SIZE // 2, SQUARE_SIZE * self.x + SQUARE_SIZE // 2))
+            center=(SQUARE_SIZE * self.col + SQUARE_SIZE // 2, SQUARE_SIZE * self.row + SQUARE_SIZE // 2))
         screen.blit(num_surf, chip_rect)

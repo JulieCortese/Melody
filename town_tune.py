@@ -1,6 +1,6 @@
 import sys
 from constants import *
-from notes import *
+from note import *
 from sound_arr import *
 
 
