@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 
-class Notes:
+class Note:
     def __init__(self):
         self.note = 'C'
 
