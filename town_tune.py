@@ -139,4 +139,30 @@ if __name__ == '__main__':
                     elif buttons[1].collidepoint(event.pos):
                         sys.exit()
                     elif note_options[0].collidepoint(event.pos):
-                        sound_arr.sound_arr.append('C')
+                        # sound_arr.sound_arr.append('C')
+                        # sound_arr.sound_arr.pop(0)
+                        print('clicked C')
+                        """
+                        for i in range(2):
+                            for j in range(6):
+                                if sound_arr.notes[i][j].note == '-':
+                                    sound_arr.notes[i][j].note = 'C'
+                                    pygame.display.update()
+                                    break
+                        """
+                    elif note_options[1].collidepoint(event.pos):
+                        print('clicked D')
+                    elif note_options[2].collidepoint(event.pos):
+                        print('clicked E')
+                    elif note_options[3].collidepoint(event.pos):
+                        print('clicked F')
+                    elif note_options[4].collidepoint(event.pos):
+                        print('clicked G')
+                    elif note_options[5].collidepoint(event.pos):
+                        print('clicked A')
+                    elif note_options[6].collidepoint(event.pos):
+                        print('clicked B')
+                    elif note_options[7].collidepoint(event.pos):
+                        print('clicked flat')
+                    elif note_options[8].collidepoint(event.pos):
+                        print('clicked shar')
