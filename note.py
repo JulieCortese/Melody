@@ -13,10 +13,11 @@ class Note:
         self.note = note
 
     def draw_note(self, screen):
-        number_font = pygame.font.Font(None, 60)
+        number_font = pygame.font.Font(None, 80)
+        # changes 0s to empty strings so nothing displays
         if self.note == '-':
-            self.note = ''  # changes 0s to empty strings so nothing displays
+            self.note = ''
         num_surf = number_font.render(str(self.note), 0, (0, 0, 0))
         chip_rect = num_surf.get_rect(
-            center=(SQUARE_SIZE * self.col + SQUARE_SIZE // 2, SQUARE_SIZE * self.row + SQUARE_SIZE // 2))
+            center=(100 * self.col + SQUARE_SIZE // 4, 160 * self.row + 150))
         screen.blit(num_surf, chip_rect)
