@@ -52,6 +52,37 @@ def draw_start_menu(screen):
         pygame.display.update()
 
 
+def draw_note_options(screen):
+    note_font = pygame.font.Font(None, 60)
+    c_surf = note_font.render('C', 0, (0, 0, 0))
+    c_rect = c_surf.get_rect(center=(60, 430))
+    screen.blit(c_surf, c_rect)
+    d_surf = note_font.render('D', 0, (0, 0, 0))
+    d_rect = d_surf.get_rect(center=(100, 430))
+    screen.blit(d_surf, d_rect)
+    e_surf = note_font.render('E', 0, (0, 0, 0))
+    e_rect = e_surf.get_rect(center=(140, 430))
+    screen.blit(e_surf, e_rect)
+    f_surf = note_font.render('F', 0, (0, 0, 0))
+    f_rect = f_surf.get_rect(center=(180, 430))
+    screen.blit(f_surf, f_rect)
+    g_surf = note_font.render('G', 0, (0, 0, 0))
+    g_rect = g_surf.get_rect(center=(220, 430))
+    screen.blit(g_surf, g_rect)
+    a_surf = note_font.render('A', 0, (0, 0, 0))
+    a_rect = a_surf.get_rect(center=(260, 430))
+    screen.blit(a_surf, a_rect)
+    b_surf = note_font.render('B', 0, (0, 0, 0))
+    b_rect = b_surf.get_rect(center=(300, 430))
+    screen.blit(b_surf, b_rect)
+    sharp_surf = note_font.render('#', 0, (0, 0, 0))
+    sharp_rect = sharp_surf.get_rect(center=(540, 430))
+    screen.blit(sharp_surf, sharp_rect)
+    flat_surf = note_font.render('b', 0, (0, 0, 0))
+    flat_rect = flat_surf.get_rect(center=(450, 430))
+    screen.blit(flat_surf, flat_rect)
+
+
 def draw_tune_screen(screen):
     screen.fill(BG_COLOR)
     title_font = pygame.font.Font(None, 80)
@@ -90,6 +121,7 @@ if __name__ == '__main__':
         restart = False
         sound_arr = SoundArr(screen)
         SoundArr.draw_sound_arr(sound_arr, screen)
+        draw_note_options(screen)
         pygame.display.update()
 
         while not restart:
