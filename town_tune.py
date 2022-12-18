@@ -88,8 +88,8 @@ if __name__ == '__main__':
         start = draw_start_menu(screen)
         buttons = draw_tune_screen(screen)
         restart = False
-        sound_arr = SoundArr()
-        SoundArr.draw_sound_arr(screen)
+        sound_arr = SoundArr(screen)
+        SoundArr.draw_sound_arr(sound_arr, screen)
         pygame.display.update()
 
         while not restart:
