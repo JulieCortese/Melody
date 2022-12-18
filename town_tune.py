@@ -76,11 +76,14 @@ def draw_note_options(screen):
     b_rect = b_surf.get_rect(center=(300, 430))
     screen.blit(b_surf, b_rect)
     sharp_surf = note_font.render('#', 0, (0, 0, 0))
-    sharp_rect = sharp_surf.get_rect(center=(540, 430))
+    sharp_rect = sharp_surf.get_rect(center=(500, 430))
     screen.blit(sharp_surf, sharp_rect)
     flat_surf = note_font.render('b', 0, (0, 0, 0))
-    flat_rect = flat_surf.get_rect(center=(450, 430))
+    flat_rect = flat_surf.get_rect(center=(440, 430))
     screen.blit(flat_surf, flat_rect)
+    nat_img = pygame.image.load('natural.png')
+    screen.blit(nat_img, (535, 410))
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, flat_rect, sharp_rect  # , nat_img?
 
 
 def draw_tune_screen(screen):
@@ -121,8 +124,9 @@ if __name__ == '__main__':
         restart = False
         sound_arr = SoundArr(screen)
         SoundArr.draw_sound_arr(sound_arr, screen)
-        draw_note_options(screen)
+        note_options = draw_note_options(screen)
         pygame.display.update()
+        accidental = 0  # natural
 
         while not restart:
             for event in pygame.event.get():
@@ -134,3 +138,5 @@ if __name__ == '__main__':
                         restart = True
                     elif buttons[1].collidepoint(event.pos):
                         sys.exit()
+                    elif note_options[0].collidepoint(event.pos):
+                        sound_arr.sound_arr.append('C')
