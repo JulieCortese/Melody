@@ -6,7 +6,7 @@ class SoundArr:
         self.name = 'sound array'
         self.sound_arr = [['-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-']]
         self.screen = screen
-        self.notes = [[Note(self.sound_arr[i][j], i, j, self.screen) for j in range(6)] for i in range(2)]
+        self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
 
     def update_notes(self):
         self.notes = []

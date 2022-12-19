@@ -77,6 +77,7 @@ def draw_note_options(screen):
     b_surf = note_font.render('B', 0, (0, 0, 0))
     b_rect = b_surf.get_rect(center=(300, 430))
     screen.blit(b_surf, b_rect)
+    """
     sharp_surf = note_font.render('#', 0, (0, 0, 0))
     sharp_rect = sharp_surf.get_rect(center=(500, 430))
     screen.blit(sharp_surf, sharp_rect)
@@ -85,9 +86,11 @@ def draw_note_options(screen):
     screen.blit(flat_surf, flat_rect)
     nat_img = pygame.image.load('natural.png')
     screen.blit(nat_img, (535, 410))
+    """
     rest_img = pygame.image.load('rest.png')
     screen.blit(rest_img, (320, 410))
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, flat_rect, sharp_rect  # , nat_img?
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect  # flat_rect, sharp_rect nat_img
+    # (actually I don't have audio files for flats and sharps so it's all natural for now)
 
 
 def draw_tune_screen(screen):
@@ -143,11 +146,22 @@ if __name__ == '__main__':
                     elif buttons[1].collidepoint(event.pos):
                         sys.exit()
                     elif note_options[0].collidepoint(event.pos):
-                        # sound_arr.sound_arr.append('C')
-                        # sound_arr.sound_arr.pop(0)
                         print('clicked C')
                         sound = pygame.mixer.Sound('c4.mp3')
                         pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'C'
+                                    sound_arr.notes[i][j].note = 'C'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('c4.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                         """
                         for i in range(2):
                             for j in range(6):
@@ -158,17 +172,109 @@ if __name__ == '__main__':
                         """
                     elif note_options[1].collidepoint(event.pos):
                         print('clicked D')
+                        sound = pygame.mixer.Sound('d4.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'D'
+                                    sound_arr.notes[i][j].note = 'D'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('d4.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     elif note_options[2].collidepoint(event.pos):
                         print('clicked E')
+                        sound = pygame.mixer.Sound('e4.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'E'
+                                    sound_arr.notes[i][j].note = 'E'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('e4.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     elif note_options[3].collidepoint(event.pos):
                         print('clicked F')
+                        sound = pygame.mixer.Sound('f4.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'F'
+                                    sound_arr.notes[i][j].note = 'F'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('f4.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     elif note_options[4].collidepoint(event.pos):
                         print('clicked G')
+                        sound = pygame.mixer.Sound('g4.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'G'
+                                    sound_arr.notes[i][j].note = 'G'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('g4.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     elif note_options[5].collidepoint(event.pos):
                         print('clicked A')
+                        sound = pygame.mixer.Sound('a5.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'A'
+                                    sound_arr.notes[i][j].note = 'A'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('a5.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     elif note_options[6].collidepoint(event.pos):
                         print('clicked B')
+                        sound = pygame.mixer.Sound('b5.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'B'
+                                    sound_arr.notes[i][j].note = 'B'
+                                    sound_arr.notes[i][j].sound = pygame.mixer.Sound('b5.mp3')
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
+                    """
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked flat')
                     elif note_options[8].collidepoint(event.pos):
                         print('clicked sharp')
+                    """

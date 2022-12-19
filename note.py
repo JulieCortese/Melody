@@ -3,14 +3,16 @@ from constants import *
 
 
 class Note:
-    def __init__(self, note, row, col, screen):
+    def __init__(self, note, sound, row, col, screen):
         self.note = note
+        self.sound = sound
         self.row = row
         self.col = col
         self.screen = screen
 
-    def set_note_val(self, note):
+    def set_note_val(self, note, sound):
         self.note = note
+        self.sound = sound
 
     def draw_note(self, screen):
         number_font = pygame.font.Font(None, 80)
