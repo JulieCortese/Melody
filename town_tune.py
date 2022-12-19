@@ -9,6 +9,7 @@ from sound_arr import *
 
 # sounds = [pygame.mixer.Sound('')]
 
+
 def draw_start_menu(screen):
     # Initialize title font
     start_title_font = pygame.font.Font(None, 60)
@@ -206,14 +207,6 @@ if __name__ == '__main__':
                                     pygame.display.update()
                                     yes = 1
                                     break
-                        """
-                        for i in range(2):
-                            for j in range(6):
-                                if sound_arr.notes[i][j].note == '-':
-                                    sound_arr.notes[i][j].note = 'C'
-                                    pygame.display.update()
-                                    break
-                        """
                     elif note_options[1].collidepoint(event.pos):
                         print('clicked D')
                         sound = pygame.mixer.Sound('d4.mp3')
@@ -331,7 +324,9 @@ if __name__ == '__main__':
                                     pygame.display.update()
                                     yes = 1
                                     break
-                    """
+                    """ maybe I could use this if I decide to add accidentals in later. 
+                    I got rid of them because I didn't have the audio files for them though
+                    
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked flat')
                     elif note_options[8].collidepoint(event.pos):

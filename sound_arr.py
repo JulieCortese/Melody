@@ -8,10 +8,6 @@ class SoundArr:
         self.screen = screen
         self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
 
-    def update_notes(self):
-        self.notes = []
-        self.notes = [[Note(self.sound_arr[i][j], i, j, self.screen) for j in range(6)] for i in range(2)]
-
     def draw_sound_arr(self, screen):
         # draws the lines the notes go on
         x_start = WIDTH // 2 - 250

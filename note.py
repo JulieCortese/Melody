@@ -10,10 +10,6 @@ class Note:
         self.col = col
         self.screen = screen
 
-    def set_note_val(self, note, sound):
-        self.note = note
-        self.sound = sound
-
     def draw_note(self, screen):
         number_font = pygame.font.Font(None, 80)
         # changes 0s to empty strings so nothing displays
