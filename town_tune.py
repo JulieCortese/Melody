@@ -1,8 +1,10 @@
 import sys
+# import vlc
 from constants import *
 from note import *
 from sound_arr import *
 
+# sounds = [pygame.mixer.Sound('')]
 
 def draw_start_menu(screen):
     # Initialize title font
@@ -83,6 +85,8 @@ def draw_note_options(screen):
     screen.blit(flat_surf, flat_rect)
     nat_img = pygame.image.load('natural.png')
     screen.blit(nat_img, (535, 410))
+    rest_img = pygame.image.load('rest.png')
+    screen.blit(rest_img, (320, 410))
     return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, flat_rect, sharp_rect  # , nat_img?
 
 
@@ -142,6 +146,8 @@ if __name__ == '__main__':
                         # sound_arr.sound_arr.append('C')
                         # sound_arr.sound_arr.pop(0)
                         print('clicked C')
+                        sound = pygame.mixer.Sound('c4.mp3')
+                        pygame.mixer.Sound.play(sound)
                         """
                         for i in range(2):
                             for j in range(6):
@@ -165,4 +171,4 @@ if __name__ == '__main__':
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked flat')
                     elif note_options[8].collidepoint(event.pos):
-                        print('clicked shar')
+                        print('clicked sharp')
