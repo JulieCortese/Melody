@@ -184,9 +184,11 @@ if __name__ == '__main__':
                         print('clicked play tune')
                         for i in range(2):
                             for j in range(6):
-                                if sound_arr.notes[i][j].sound is not None:
+                                if sound_arr.notes[i][j].sound is not None and sound_arr.sound_arr[i][j] != 'rest':
                                     pygame.mixer.Sound.play(sound_arr.notes[i][j].sound)
                                     pygame.time.wait(300)
+                                elif sound_arr.sound_arr[i][j] == 'rest':
+                                    pygame.time.wait(600)
                     elif note_options[0].collidepoint(event.pos):
                         print('clicked C')
                         sound = pygame.mixer.Sound('c4.mp3')
@@ -316,6 +318,19 @@ if __name__ == '__main__':
                                     break
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked rest')
+                        yes = 0
+                        for i in range(2):
+                            if yes == 1:
+                                break
+                            for j in range(6):
+                                if sound_arr.sound_arr[i][j] == '-':
+                                    sound_arr.sound_arr[i][j] = 'rest'
+                                    sound_arr.notes[i][j].note = 'rest'
+                                    sound_arr.notes[i][j].sound = pygame.time.delay(300)
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    yes = 1
+                                    break
                     """
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked flat')
