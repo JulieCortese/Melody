@@ -326,7 +326,7 @@ if __name__ == '__main__':
                                 if sound_arr.sound_arr[i][j] == '-':
                                     sound_arr.sound_arr[i][j] = 'rest'
                                     sound_arr.notes[i][j].note = 'rest'
-                                    sound_arr.notes[i][j].sound = pygame.time.delay(300)
+                                    sound_arr.notes[i][j].sound = None
                                     SoundArr.draw_sound_arr(sound_arr, screen)
                                     pygame.display.update()
                                     yes = 1
