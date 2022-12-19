@@ -179,6 +179,12 @@ if __name__ == '__main__':
                                     pygame.display.update()
                                     back = 1
                                     break
+                    elif buttons[3].collidepoint(event.pos):
+                        print('clicked play tune')
+                        for i in range(2):
+                            for j in range(6):
+                                if sound_arr.notes[i][j].sound is not None:
+                                    pygame.mixer.Sound.play(sound_arr.notes[i][j].sound)
                     elif note_options[0].collidepoint(event.pos):
                         print('clicked C')
                         sound = pygame.mixer.Sound('c4.mp3')
