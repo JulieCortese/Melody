@@ -1,4 +1,7 @@
 import sys
+
+import pygame.font
+
 # import vlc
 from constants import *
 from note import *
@@ -116,8 +119,21 @@ def draw_tune_screen(screen):
     quit_surface.blit(quit_text, (10, 10))
     quit_rectangle = quit_surface.get_rect(center=(450, 560))
     screen.blit(quit_surface, quit_rectangle)
+
+    smaller_button_font = pygame.font.Font(None, 30)
+    play_text = smaller_button_font.render('Play Tune', 0, (255, 255, 255))
+    play_surface = pygame.Surface((play_text.get_size()[0] + 20, play_text.get_size()[1] + 20))
+    play_surface.fill(LINE_COLOR)
+    play_surface.blit(play_text, (10, 10))
+    play_rectangle = play_surface.get_rect(center=(505, 370))
+    screen.blit(play_surface, play_rectangle)
+
+    note_font = pygame.font.Font(None, 30)
+    backspace_surface = note_font.render('Backspace', 0, (0, 0, 0))
+    backspace_rectangle = backspace_surface.get_rect(center=(500, 430))
+    screen.blit(backspace_surface, backspace_rectangle)
     pygame.display.update()
-    return main_menu_rectangle, quit_rectangle
+    return main_menu_rectangle, quit_rectangle, backspace_rectangle, play_rectangle
 
 
 if __name__ == '__main__':
@@ -145,6 +161,24 @@ if __name__ == '__main__':
                         restart = True
                     elif buttons[1].collidepoint(event.pos):
                         sys.exit()
+                    elif buttons[2].collidepoint(event.pos):
+                        print('clicked backspace')
+                        back = 0
+                        for i in range(1, -1, -1):
+                            if back == 1:
+                                break
+                            for j in range(5, -1, -1):
+                                if sound_arr.sound_arr[i][j] != '-':
+                                    sound_arr.sound_arr[i][j] = '-'
+                                    sound_arr.notes[i][j].note = '-'
+                                    sound_arr.notes[i][j].sound = None
+                                    screen.fill((255, 245, 218))
+                                    buttons = draw_tune_screen(screen)
+                                    note_options = draw_note_options(screen)
+                                    SoundArr.draw_sound_arr(sound_arr, screen)
+                                    pygame.display.update()
+                                    back = 1
+                                    break
                     elif note_options[0].collidepoint(event.pos):
                         print('clicked C')
                         sound = pygame.mixer.Sound('c4.mp3')
