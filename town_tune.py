@@ -92,7 +92,8 @@ def draw_note_options(screen):
     """
     rest_img = pygame.image.load('rest.png')
     screen.blit(rest_img, (320, 410))
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect  # flat_rect, sharp_rect nat_img
+    rest_rect = rest_img.get_rect(topleft=(320, 410))
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect  # flat_rect, sharp_rect nat_img
     # (actually I don't have audio files for flats and sharps so it's all natural for now)
 
 
@@ -185,6 +186,7 @@ if __name__ == '__main__':
                             for j in range(6):
                                 if sound_arr.notes[i][j].sound is not None:
                                     pygame.mixer.Sound.play(sound_arr.notes[i][j].sound)
+                                    pygame.time.wait(300)
                     elif note_options[0].collidepoint(event.pos):
                         print('clicked C')
                         sound = pygame.mixer.Sound('c4.mp3')
@@ -312,6 +314,8 @@ if __name__ == '__main__':
                                     pygame.display.update()
                                     yes = 1
                                     break
+                    elif note_options[7].collidepoint(event.pos):
+                        print('clicked rest')
                     """
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked flat')
