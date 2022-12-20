@@ -81,6 +81,12 @@ def draw_note_options(screen):
     b_surf = note_font.render('B', 0, (0, 0, 0))
     b_rect = b_surf.get_rect(center=(300, 430))
     screen.blit(b_surf, b_rect)
+
+    # make box for note options to be in
+    pygame.draw.line(screen, (0, 0, 0), (20, 400), (580, 400))
+    pygame.draw.line(screen, (0, 0, 0), (20, 400), (20, 460))
+    pygame.draw.line(screen, (0, 0, 0), (20, 460), (580, 460))
+    pygame.draw.line(screen, (0, 0, 0), (580, 460), (580, 400))
     """
     sharp_surf = note_font.render('#', 0, (0, 0, 0))
     sharp_rect = sharp_surf.get_rect(center=(500, 430))

@@ -45,13 +45,6 @@ class SoundArr:
                                  (x_start + j * 100, y_start + i * 150), 50)
                 # need to figure out how to display the sound array itself
                 # need to add code to display the options for each sound
-        # make box for note options to be in
-        pygame.draw.line(screen, (0, 0, 0), (20, 400), (580, 400))
-        pygame.draw.line(screen, (0, 0, 0), (20, 400), (20, 460))
-        pygame.draw.line(screen, (0, 0, 0), (20, 460), (580, 460))
-        pygame.draw.line(screen, (0, 0, 0), (580, 460), (580, 400))
-        # draws notes in array
-        note_font = pygame.font.Font(None, 50)
         for i in range(2):
             for j in range(6):
                 self.notes[i][j].draw_note(self.screen)
