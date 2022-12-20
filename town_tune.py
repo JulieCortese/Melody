@@ -162,6 +162,13 @@ if __name__ == '__main__':
         while not restart:
             screens = 1
             screen_num = 1
+            if screens > 1 and screen_num < screens:
+                # load right arrow image and blit it onscreen (how to make clickable if may or may not exist?)
+                # screen_num changes when arrow clicked, screen changes when arrow clicked
+                pass
+            elif screens > 1 and screen_num > 1:
+                # load left arrow and blit (same problem above) and same results above
+                pass
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -174,7 +181,7 @@ if __name__ == '__main__':
                     elif buttons[2].collidepoint(event.pos):
                         print('clicked backspace')
                         back = 0
-                        for i in range(1, -1, -1):
+                        for i in range(len(sound_arr.sound_arr) - 1, -1, -1):
                             if back == 1:
                                 break
                             for j in range(5, -1, -1):
