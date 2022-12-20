@@ -11,7 +11,7 @@ class SoundArr:
     def update_notes(self):
         self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
 
-    def add_note(self, note, sound):
+    def add_note(self, note, sound, screens):
         yes = 0
         not_full = 0
         for i in range(len(self.sound_arr)):
@@ -31,6 +31,7 @@ class SoundArr:
                     yes = 1
                     break
         if not_full == 0:
+            screens += 1
             self.sound_arr.append([note, '-', '-', '-', '-', '-'])
             self.sound_arr.append(['-', '-', '-', '-', '-', '-'])
             self.update_notes()

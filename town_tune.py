@@ -202,47 +202,47 @@ if __name__ == '__main__':
                         sound = pygame.mixer.Sound('c4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'c4.mp3'
-                        SoundArr.add_note(sound_arr, 'C', sound)
+                        SoundArr.add_note(sound_arr, 'C', sound, screens)
                     elif note_options[1].collidepoint(event.pos):
                         print('clicked D')
                         sound = pygame.mixer.Sound('d4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'd4.mp3'
-                        SoundArr.add_note(sound_arr, 'D', sound)
+                        SoundArr.add_note(sound_arr, 'D', sound, screens)
                     elif note_options[2].collidepoint(event.pos):
                         print('clicked E')
                         sound = pygame.mixer.Sound('e4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'e4.mp3'
-                        SoundArr.add_note(sound_arr, 'E', sound)
+                        SoundArr.add_note(sound_arr, 'E', sound, screens)
                     elif note_options[3].collidepoint(event.pos):
                         print('clicked F')
                         sound = pygame.mixer.Sound('f4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'f4.mp3'
-                        SoundArr.add_note(sound_arr, 'F', sound)
+                        SoundArr.add_note(sound_arr, 'F', sound, screens)
                     elif note_options[4].collidepoint(event.pos):
                         print('clicked G')
                         sound = pygame.mixer.Sound('g4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'g4.mp3'
-                        SoundArr.add_note(sound_arr, 'G', sound)
+                        SoundArr.add_note(sound_arr, 'G', sound, screens)
                     elif note_options[5].collidepoint(event.pos):
                         print('clicked A')
                         sound = pygame.mixer.Sound('a5.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'a5.mp3'
-                        SoundArr.add_note(sound_arr, 'A', sound)
+                        SoundArr.add_note(sound_arr, 'A', sound, screens)
                     elif note_options[6].collidepoint(event.pos):
                         print('clicked B')
                         sound = pygame.mixer.Sound('b5.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'b5.mp3'
-                        SoundArr.add_note(sound_arr, 'B', sound)
+                        SoundArr.add_note(sound_arr, 'B', sound, screens)
                     elif note_options[7].collidepoint(event.pos):
                         print('clicked rest')
                         sound = None
-                        SoundArr.add_note(sound_arr, 'rest', None)
+                        SoundArr.add_note(sound_arr, 'rest', None, screens)
                     """ maybe I could use this if I decide to add accidentals in later. 
                     I got rid of them because I didn't have the audio files for them though
                     
