@@ -161,6 +161,7 @@ if __name__ == '__main__':
 
         while not restart:
             screens = 1
+            screen_num = 1
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
