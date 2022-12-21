@@ -51,4 +51,4 @@ class SoundArr:
                 # need to add code to display the options for each sound
         for i in range(len(self.sound_arr)):
             for j in range(6):
-                SoundArr.notes[i][j].draw_note(SoundArr.screen)
+                self.notes[i][j].draw_note(self.screen)
