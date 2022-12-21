@@ -34,18 +34,21 @@ class SoundArr:
             screens += 1
             self.sound_arr.append([note, '-', '-', '-', '-', '-'])
             self.sound_arr.append(['-', '-', '-', '-', '-', '-'])
+            print(self.sound_arr)
             self.update_notes()
+            SoundArr.draw_sound_arr(self, self.screen)
+            pygame.display.update()
 
     def draw_sound_arr(self, screen):
         # draws the lines the notes go on
         x_start = WIDTH // 2 - 250
         y_start = HEIGHT // 2 - 120
         for i in range(len(self.sound_arr)):
-            for j in range(len(self.sound_arr[0])):
+            for j in range(6):
                 pygame.draw.line(screen, (0, 0, 0), (x_start + j * 100, y_start + i * 150),
                                  (x_start + j * 100, y_start + i * 150), 50)
                 # need to figure out how to display the sound array itself
                 # need to add code to display the options for each sound
-        for i in range(2):
+        for i in range(len(self.sound_arr)):
             for j in range(6):
-                self.notes[i][j].draw_note(self.screen)
+                SoundArr.notes[i][j].draw_note(SoundArr.screen)
