@@ -9,7 +9,30 @@ class SoundArr:
         self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
 
     def update_notes(self):
-        self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
+        notes = []
+        sound = ''
+        for i in range(len(self.sound_arr)):
+            for j in range(6):
+                if self.sound_arr[i][j] == 'C':
+                    sound = pygame.mixer.Sound('c4.mp3')
+                elif self.sound_arr[i][j] == 'D':
+                    sound = pygame.mixer.Sound('d4.mp3')
+                elif self.sound_arr[i][j] == 'E':
+                    sound = pygame.mixer.Sound('e4.mp3')
+                elif self.sound_arr[i][j] == 'F':
+                    sound = pygame.mixer.Sound('f4.mp3')
+                elif self.sound_arr[i][j] == 'G':
+                    sound = pygame.mixer.Sound('g4.mp3')
+                elif self.sound_arr[i][j] == 'A':
+                    sound = pygame.mixer.Sound('a5.mp3')
+                elif self.sound_arr[i][j] == 'B':
+                    sound = pygame.mixer.Sound('b5.mp3')
+                elif self.sound_arr[i][j] == 'rest':
+                    sound = None
+                elif self.sound_arr[i][j] == '-':
+                    sound = None
+                notes.append(Note(self.sound_arr[i][j], sound, i, j, self.screen))
+        self.notes = notes
 
     def add_note(self, note, sound, screens):
         yes = 0
@@ -17,7 +40,7 @@ class SoundArr:
         for i in range(len(self.sound_arr)):
             if yes == 1:
                 break
-            for j in range(6):
+            for j in range(len(self.sound_arr[i])):
                 if self.sound_arr[i][j] == '-':
                     not_full = 1
                     self.sound_arr[i][j] = note
@@ -34,7 +57,6 @@ class SoundArr:
             screens += 1
             self.sound_arr.append([note, '-', '-', '-', '-', '-'])
             self.sound_arr.append(['-', '-', '-', '-', '-', '-'])
-            print(self.sound_arr)
             self.update_notes()
             SoundArr.draw_sound_arr(self, self.screen)
             pygame.display.update()

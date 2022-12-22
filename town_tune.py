@@ -162,17 +162,17 @@ if __name__ == '__main__':
         while not restart:
             screens = 1
             screen_num = 1
+            """
             if screens > 1 and screen_num < screens:
                 # load right arrow image and blit it onscreen (how to make clickable if may or may not exist?)
                 # screen_num changes when arrow clicked, screen changes when arrow clicked
                 right_arrow_surf = pygame.image.load('right_arrow.png')
                 right_arrow_rect = right_arrow_surf.get_rect(center=(30, 70))
                 screen.blit(right_arrow_surf, right_arrow_rect)
-                pass
             elif screens > 1 and screen_num > 1:
                 # load left arrow and blit (same problem above) and same results above
                 left_arrow_surf = pygame.image.load('left_arrow.png')
-                pass
+                """
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -204,6 +204,7 @@ if __name__ == '__main__':
                         print('clicked play tune')
                         for i in range(len(sound_arr.sound_arr)):
                             for j in range(6):
+                                print(sound_arr.notes[i][j].sound)
                                 if sound_arr.notes[i][j].sound is not None and sound_arr.sound_arr[i][j] != 'rest':
                                     pygame.mixer.Sound.play(sound_arr.notes[i][j].sound)
                                     pygame.time.wait(300)
