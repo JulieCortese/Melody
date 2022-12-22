@@ -204,7 +204,7 @@ if __name__ == '__main__':
                         print('clicked play tune')
                         for i in range(len(sound_arr.sound_arr)):
                             for j in range(6):
-                                print(sound_arr.notes[i][j].sound)
+                                # print(sound_arr.notes[i][j].sound)
                                 if sound_arr.notes[i][j].sound is not None and sound_arr.sound_arr[i][j] != 'rest':
                                     pygame.mixer.Sound.play(sound_arr.notes[i][j].sound)
                                     pygame.time.wait(300)

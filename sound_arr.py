@@ -9,6 +9,7 @@ class SoundArr:
         self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
 
     def update_notes(self):
+        outer_notes = []
         notes = []
         sound = ''
         for i in range(len(self.sound_arr)):
@@ -31,8 +32,10 @@ class SoundArr:
                     sound = None
                 elif self.sound_arr[i][j] == '-':
                     sound = None
-                notes.append(Note(self.sound_arr[i][j], sound, i, j, self.screen))
-        self.notes = notes
+                notes.append(Note(self.sound_arr[i][j], sound, i, j, self.screen)) # self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
+            outer_notes.append(notes)
+            notes.clear()
+        self.notes = outer_notes
 
     def add_note(self, note, sound, screens):
         yes = 0
@@ -71,6 +74,6 @@ class SoundArr:
                                  (x_start + j * 100, y_start + i * 150), 50)
                 # need to figure out how to display the sound array itself
                 # need to add code to display the options for each sound
-        for i in range(len(self.sound_arr)):
-            for j in range(6):
+        for i in range(len(self.notes)):
+            for j in range(len(self.notes[i])):
                 self.notes[i][j].draw_note(self.screen)
