@@ -32,9 +32,11 @@ class SoundArr:
                     sound = None
                 elif self.sound_arr[i][j] == '-':
                     sound = None
-                notes.append(Note(self.sound_arr[i][j], sound, i, j, self.screen)) # self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
+                notes.append(Note(self.sound_arr[i][j], sound, i, j, self.screen))
             outer_notes.append(notes)
-            notes.clear()
+            print(outer_notes)
+            notes = []
+        print(outer_notes)
         self.notes = outer_notes
 
     def add_note(self, note, sound, screens):
