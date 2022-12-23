@@ -71,7 +71,11 @@ class SoundArr:
             for j in range(6):
                 pygame.draw.line(screen, (0, 0, 0), (x_start + j * 100, y_start + i * 150),
                                  (x_start + j * 100, y_start + i * 150), 50)
-        for i in range(screen_num - 1, screen_num + 1):
+        if screen_num == 1:
+            start = 0
+        else:
+            start = 2 * (screen_num - 1)
+        for i in range(start, start + 2):
             for j in range(len(self.notes[i])):
                 self.notes[i][j].draw_note(self.screen)
         """
