@@ -293,7 +293,7 @@ if __name__ == '__main__':
                         if screens is None:
                             screens = screens_temp
                     elif note_options[8].collidepoint(event.pos):
-                        print('left arrow clicked')
+                        # left arrow clicked
                         if screens > 1 and screen_num > 1:
                             screen_num -= 1
                             screen.fill((255, 245, 218))
@@ -302,8 +302,8 @@ if __name__ == '__main__':
                             SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
                             pygame.display.update()
                     elif note_options[9].collidepoint(event.pos):
+                        # right arrow clicked
                         if screens > 1 and screen_num < screens:
-                            print('hello')
                             screen_num += 1
                             screen.fill((255, 245, 218))
                             buttons = draw_tune_screen(screen)
