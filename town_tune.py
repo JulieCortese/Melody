@@ -154,7 +154,9 @@ if __name__ == '__main__':
         buttons = draw_tune_screen(screen)
         restart = False
         sound_arr = SoundArr(screen)
-        SoundArr.draw_sound_arr(sound_arr, screen)
+        screen_num = 1
+        screens = 1
+        SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
         note_options = draw_note_options(screen)
         pygame.display.update()
         accidental = 0  # natural

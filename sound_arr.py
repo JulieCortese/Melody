@@ -52,7 +52,7 @@ class SoundArr:
                         self.notes[i][j].sound = pygame.mixer.Sound(sound)
                     else:
                         self.notes[i][j].sound = None
-                    SoundArr.draw_sound_arr(self, self.screen)
+                    SoundArr.draw_sound_arr(self, self.screen, screen_num)
                     pygame.display.update()
                     yes = 1
                     break
