@@ -2,7 +2,6 @@ import sys
 
 import pygame.font
 
-# import vlc
 from constants import *
 from note import *
 from sound_arr import *
