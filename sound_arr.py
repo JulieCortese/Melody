@@ -3,7 +3,6 @@ from note import *
 
 class SoundArr:
     def __init__(self, screen):
-        self.name = 'sound array'
         self.sound_arr = [['-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-']]
         self.screen = screen
         self.notes = [[Note(self.sound_arr[i][j], None, i, j, self.screen) for j in range(6)] for i in range(2)]
@@ -63,7 +62,6 @@ class SoundArr:
             self.update_notes()
             SoundArr.draw_sound_arr(self, self.screen, screen_num)
             pygame.display.update()
-            print(screens)
             return screens
 
     def draw_sound_arr(self, screen, screen_num):

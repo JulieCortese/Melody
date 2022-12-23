@@ -171,10 +171,9 @@ if __name__ == '__main__':
         note_options = draw_note_options(screen)
         pygame.display.update()
         accidental = 0  # natural
+        screen_num = 1
 
         while not restart:
-            screens = 1
-            screen_num = 1
             """
             if screens > 1 and screen_num < screens:
                 # load right arrow image and blit it onscreen (how to make clickable if may or may not exist?)
@@ -231,6 +230,7 @@ if __name__ == '__main__':
                         screens = SoundArr.add_note(sound_arr, 'C', sound, screens, screen_num)
                         if screens is None:
                             screens = screens_temp
+                        print(screens)
                     elif note_options[1].collidepoint(event.pos):
                         # clicked D
                         sound = pygame.mixer.Sound('d4.mp3')
@@ -288,11 +288,14 @@ if __name__ == '__main__':
                     elif note_options[7].collidepoint(event.pos):
                         # clicked rest
                         sound = None
-                        SoundArr.add_note(sound_arr, 'rest', None, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'rest', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[8].collidepoint(event.pos):
                         print('left arrow clicked')
                         if screens > 1 and screen_num > 1:
-                            print('hi')
+                            print('hi')  # FIXME: get rid of checker once this works
                             screen_num -= 1
                             screen.fill((255, 245, 218))
                             buttons = draw_tune_screen(screen)
@@ -300,7 +303,9 @@ if __name__ == '__main__':
                             SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
                             pygame.display.update()
                     elif note_options[9].collidepoint(event.pos):
-                        print('right arrow clicked')
+                        print('right arrow clicked')  # FIXME: get rid of checker once this works
+                        print(screens)
+                        print(screen_num)
                         if screens > 1 and screen_num < screens:
                             print('hello')
                             screen_num += 1
