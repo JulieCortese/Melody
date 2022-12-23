@@ -100,8 +100,19 @@ def draw_note_options(screen):
     rest_img = pygame.image.load('rest.png')
     screen.blit(rest_img, (320, 410))
     rest_rect = rest_img.get_rect(topleft=(320, 410))
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect  # flat_rect, sharp_rect nat_img
-    # (actually I don't have audio files for flats and sharps so it's all natural for now)
+    # the arrows should let the player navigate through screens
+    left_ar_img = pygame.image.load('left_arrow.png')
+    left_rect = left_ar_img.get_rect(center=(30, 500))
+    screen.blit(left_ar_img, left_rect)
+    right_ar_img = pygame.image.load('right_arrow.png')
+    right_rect = right_ar_img.get_rect(center=(560, 500))
+    screen.blit(right_ar_img, right_rect)
+    # numbering the screens lets the player know the order the notes will go in
+    screen_num_surf = note_font.render('screen 1', 0, (0, 0, 0))
+    screen_num_rect = screen_num_surf.get_rect(center=(300, 500))
+    screen.blit(screen_num_surf, screen_num_rect)
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect
+    # (actually I don't have audio files for flats and sharps, so it's all natural for now)
 
 
 def draw_tune_screen(screen):
@@ -257,6 +268,10 @@ if __name__ == '__main__':
                         # clicked rest
                         sound = None
                         SoundArr.add_note(sound_arr, 'rest', None, screens, screen_num)
+                    elif note_options[8].collidepoint(event.pos):
+                        print('clicked')
+                    elif note_options[9].collidepoint(event.pos):
+                        print('clicked')
                     """ maybe I could use this if I decide to add accidentals in later. 
                     I got rid of them because I didn't have the audio files for them though
                     
