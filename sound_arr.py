@@ -63,18 +63,21 @@ class SoundArr:
             self.update_notes()
             SoundArr.draw_sound_arr(self, self.screen, screen_num)
             pygame.display.update()
+            print(screens)
+            return screens
 
     def draw_sound_arr(self, screen, screen_num):
-        if screen_num > 1:
-            one_dim = screen_num * 2
-            index_end = screen_num * 12
-            index_start = index_end - 12
-            # how do I do this
-            print(one_dim, index_start, index_end)
-
-        # draws the lines the notes go on
         x_start = WIDTH // 2 - 250
         y_start = HEIGHT // 2 - 120
+        for i in range(2):
+            for j in range(6):
+                pygame.draw.line(screen, (0, 0, 0), (x_start + j * 100, y_start + i * 150),
+                                 (x_start + j * 100, y_start + i * 150), 50)
+        for i in range(screen_num - 1, screen_num + 1):
+            for j in range(len(self.notes[i])):
+                self.notes[i][j].draw_note(self.screen)
+        """
+        # draws the lines the notes go on
         for i in range(len(self.sound_arr)):
             for j in range(6):
                 pygame.draw.line(screen, (0, 0, 0), (x_start + j * 100, y_start + i * 150),
@@ -84,3 +87,4 @@ class SoundArr:
         for i in range(len(self.notes)):
             for j in range(len(self.notes[i])):
                 self.notes[i][j].draw_note(self.screen)
+                """

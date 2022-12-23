@@ -108,7 +108,7 @@ def draw_note_options(screen):
     right_rect = right_ar_img.get_rect(center=(560, 500))
     screen.blit(right_ar_img, right_rect)
     # numbering the screens lets the player know the order the notes will go in
-    screen_num_surf = note_font.render('screen 1', 0, (0, 0, 0))
+    screen_num_surf = note_font.render(f'screen {screen_num}', 0, (0, 0, 0))
     screen_num_rect = screen_num_surf.get_rect(center=(300, 500))
     screen.blit(screen_num_surf, screen_num_rect)
     return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect
@@ -227,51 +227,88 @@ if __name__ == '__main__':
                         sound = pygame.mixer.Sound('c4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'c4.mp3'
-                        SoundArr.add_note(sound_arr, 'C', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'C', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[1].collidepoint(event.pos):
                         # clicked D
                         sound = pygame.mixer.Sound('d4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'd4.mp3'
-                        SoundArr.add_note(sound_arr, 'D', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'D', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[2].collidepoint(event.pos):
                         # clicked E
                         sound = pygame.mixer.Sound('e4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'e4.mp3'
-                        SoundArr.add_note(sound_arr, 'E', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'E', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[3].collidepoint(event.pos):
                         # clicked F
                         sound = pygame.mixer.Sound('f4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'f4.mp3'
-                        SoundArr.add_note(sound_arr, 'F', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'F', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[4].collidepoint(event.pos):
                         # clicked G
                         sound = pygame.mixer.Sound('g4.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'g4.mp3'
-                        SoundArr.add_note(sound_arr, 'G', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'G', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[5].collidepoint(event.pos):
                         # clicked A
                         sound = pygame.mixer.Sound('a5.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'a5.mp3'
-                        SoundArr.add_note(sound_arr, 'A', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'A', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[6].collidepoint(event.pos):
                         # clicked B
                         sound = pygame.mixer.Sound('b5.mp3')
                         pygame.mixer.Sound.play(sound)
                         sound = 'b5.mp3'
-                        SoundArr.add_note(sound_arr, 'B', sound, screens, screen_num)
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, 'B', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     elif note_options[7].collidepoint(event.pos):
                         # clicked rest
                         sound = None
                         SoundArr.add_note(sound_arr, 'rest', None, screens, screen_num)
                     elif note_options[8].collidepoint(event.pos):
-                        print('clicked')
+                        print('left arrow clicked')
+                        if screens > 1 and screen_num > 1:
+                            print('hi')
+                            screen_num -= 1
+                            screen.fill((255, 245, 218))
+                            buttons = draw_tune_screen(screen)
+                            note_options = draw_note_options(screen)
+                            SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
+                            pygame.display.update()
                     elif note_options[9].collidepoint(event.pos):
-                        print('clicked')
+                        print('right arrow clicked')
+                        if screens > 1 and screen_num < screens:
+                            print('hello')
+                            screen_num += 1
+                            screen.fill((255, 245, 218))
+                            buttons = draw_tune_screen(screen)
+                            note_options = draw_note_options(screen)
+                            SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
+                            pygame.display.update()
                     """ maybe I could use this if I decide to add accidentals in later. 
                     I got rid of them because I didn't have the audio files for them though
                     
