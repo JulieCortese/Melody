@@ -98,8 +98,8 @@ def draw_note_options(screen):
     screen.blit(nat_img, (535, 410))
     """
     rest_img = pygame.image.load('rest.png')
-    screen.blit(rest_img, (320, 410))
-    rest_rect = rest_img.get_rect(topleft=(320, 410))
+    screen.blit(rest_img, (400, 410))
+    rest_rect = rest_img.get_rect(topleft=(400, 410))
     # the arrows should let the player navigate through screens
     left_ar_img = pygame.image.load('left_arrow.png')
     left_rect = left_ar_img.get_rect(center=(30, 500))
@@ -111,7 +111,10 @@ def draw_note_options(screen):
     screen_num_surf = note_font.render(f'screen {screen_num}', 0, (0, 0, 0))
     screen_num_rect = screen_num_surf.get_rect(center=(300, 500))
     screen.blit(screen_num_surf, screen_num_rect)
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect
+    high_c_surf = note_font.render('^C', 0, (0, 0, 0))
+    high_c_rect = high_c_surf.get_rect(center=(350, 430))
+    screen.blit(high_c_surf, high_c_rect)
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect, high_c_rect
     # (actually I don't have audio files for flats and sharps, so it's all natural for now)
 
 
@@ -230,7 +233,6 @@ if __name__ == '__main__':
                         screens = SoundArr.add_note(sound_arr, 'C', sound, screens, screen_num)
                         if screens is None:
                             screens = screens_temp
-                        print(screens)
                     elif note_options[1].collidepoint(event.pos):
                         # clicked D
                         sound = pygame.mixer.Sound('d4.mp3')
@@ -310,6 +312,15 @@ if __name__ == '__main__':
                             note_options = draw_note_options(screen)
                             SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
                             pygame.display.update()
+                    elif note_options[10].collidepoint(event.pos):
+                        # clicked high C
+                        sound = pygame.mixer.Sound('c5.mp3')
+                        pygame.mixer.Sound.play(sound)
+                        sound = 'c5.mp3'
+                        screens_temp = screens
+                        screens = SoundArr.add_note(sound_arr, '^C', sound, screens, screen_num)
+                        if screens is None:
+                            screens = screens_temp
                     """ maybe I could use this if I decide to add accidentals in later. 
                     I got rid of them because I didn't have the audio files for them though
                     
