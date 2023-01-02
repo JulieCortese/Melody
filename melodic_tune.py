@@ -160,7 +160,7 @@ def draw_tune_screen(screen):
 if __name__ == '__main__':
     while True:
         pygame.init()
-        pygame.display.set_caption('Melodic Tune')
+        pygame.display.set_caption('Melody')
         screen = pygame.display.set_mode((WIDTH, HEIGHT))
         screen.fill(BG_COLOR)
         start = draw_start_menu(screen)
