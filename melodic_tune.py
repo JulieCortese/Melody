@@ -160,7 +160,7 @@ def draw_tune_screen(screen):
 if __name__ == '__main__':
     while True:
         pygame.init()
-        pygame.display.set_caption('Animal Crossing Town Tune')
+        pygame.display.set_caption('Melodic Tune')
         screen = pygame.display.set_mode((WIDTH, HEIGHT))
         screen.fill(BG_COLOR)
         start = draw_start_menu(screen)
