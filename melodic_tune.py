@@ -17,7 +17,7 @@ def draw_start_menu(screen):
     screen.fill(BG_COLOR)
 
     # Initialize and draw title
-    title_surface = start_title_font.render("Animal Crossing Town Tune", 0, LINE_COLOR)
+    title_surface = start_title_font.render("Melody", 0, LINE_COLOR)
     title_rectangle = title_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 150))
     screen.blit(title_surface, title_rectangle)
@@ -120,7 +120,7 @@ def draw_note_options(screen):
 def draw_tune_screen(screen):
     screen.fill(BG_COLOR)
     title_font = pygame.font.Font(None, 80)
-    title_surface = title_font.render("Town Tune", 0, LINE_COLOR)
+    title_surface = title_font.render("Melodic Tune", 0, LINE_COLOR)
     pygame.draw.line(screen, LINE_COLOR, (10, 90), (590, 90), 5)
     title_rectangle = title_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 250))
