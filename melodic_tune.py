@@ -57,7 +57,7 @@ def draw_start_menu(screen):
         pygame.display.update()
 
 
-def draw_note_options(screen):
+def draw_note_options(screen, octave):
     note_font = pygame.font.Font(None, 60)
     c_surf = note_font.render('C', 0, (0, 0, 0))
     c_rect = c_surf.get_rect(center=(60, 430))
@@ -80,7 +80,7 @@ def draw_note_options(screen):
     b_surf = note_font.render('B', 0, (0, 0, 0))
     b_rect = b_surf.get_rect(center=(300, 430))
     screen.blit(b_surf, b_rect)
-    octave_surf = note_font.render('4', 0, (0, 0, 0))
+    octave_surf = note_font.render(str(octave), 0, (0, 0, 0))
     octave_rect = octave_surf.get_rect(center=(70, 380))
     screen.blit(octave_surf, octave_rect)
 
@@ -195,10 +195,11 @@ if __name__ == '__main__':
         sound_arr = SoundArr(screen)
         screen_num = 1
         screens = 1
+        octave = 4
+        accidental = 0
         SoundArr.draw_sound_arr(sound_arr, screen, screen_num)
-        note_options = draw_note_options(screen)
+        note_options = draw_note_options(screen, octave)
         pygame.display.update()
-        accidental = 0  # natural
         screen_num = 1
 
         while not restart:
@@ -348,8 +349,16 @@ if __name__ == '__main__':
                             screens = screens_temp
                     elif note_options[11].collidepoint(event.pos):
                         print('octave up')
+                        if octave < 8:
+                            octave += 1
+                        else:
+                            print('highest possible octave')
                     elif note_options[12].collidepoint(event.pos):
                         print('octave down')
+                        if octave > 0:
+                            octave -= 1
+                        else:
+                            print('lowest possible octave')
                     elif note_options[13].collidepoint(event.pos):
                         print('sharp')
                     elif note_options[14].collidepoint(event.pos):
