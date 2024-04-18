@@ -1,3 +1,4 @@
+from musicpy import *
 from note import *
 
 
@@ -24,9 +25,9 @@ class SoundArr:
                 elif self.sound_arr[i][j] == 'G':
                     sound = pygame.mixer.Sound('g4.mp3')
                 elif self.sound_arr[i][j] == 'A':
-                    sound = pygame.mixer.Sound('a5.mp3')
+                    sound = pygame.mixer.Sound('a4.mp3')
                 elif self.sound_arr[i][j] == 'B':
-                    sound = pygame.mixer.Sound('b5.mp3')
+                    sound = pygame.mixer.Sound('b4.mp3')
                 elif self.sound_arr[i][j] == 'rest':
                     sound = None
                 elif self.sound_arr[i][j] == '-':

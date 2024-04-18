@@ -1,5 +1,5 @@
 import sys
-
+from musicpy import *
 import pygame.font
 
 from constants import *
@@ -80,6 +80,17 @@ def draw_note_options(screen):
     b_surf = note_font.render('B', 0, (0, 0, 0))
     b_rect = b_surf.get_rect(center=(300, 430))
     screen.blit(b_surf, b_rect)
+    octave_surf = note_font.render('4', 0, (0, 0, 0))
+    octave_rect = octave_surf.get_rect(center=(70, 380))
+    screen.blit(octave_surf, octave_rect)
+
+    # now to add the up and down octaves buttons
+    octave_up_img = pygame.image.load('octave-up.png')
+    screen.blit(octave_up_img, (20, 360))
+    octave_up_rect = octave_up_img.get_rect(topleft=(20, 360))
+    octave_down_img = pygame.image.load('octave-down.png')
+    screen.blit(octave_down_img, (90, 360))
+    octave_down_rect = octave_down_img.get_rect(topleft=(90, 360))
 
     # make box for note options to be in
     pygame.draw.line(screen, (0, 0, 0), (20, 400), (580, 400))
@@ -99,6 +110,7 @@ def draw_note_options(screen):
     rest_img = pygame.image.load('rest.png')
     screen.blit(rest_img, (400, 410))
     rest_rect = rest_img.get_rect(topleft=(400, 410))
+
     # the arrows should let the player navigate through screens
     left_ar_img = pygame.image.load('left_arrow.png')
     left_rect = left_ar_img.get_rect(center=(30, 500))
@@ -106,6 +118,7 @@ def draw_note_options(screen):
     right_ar_img = pygame.image.load('right_arrow.png')
     right_rect = right_ar_img.get_rect(center=(560, 500))
     screen.blit(right_ar_img, right_rect)
+
     # numbering the screens lets the player know the order the notes will go in
     screen_num_surf = note_font.render(f'screen {screen_num}', 0, (0, 0, 0))
     screen_num_rect = screen_num_surf.get_rect(center=(300, 500))
@@ -113,7 +126,7 @@ def draw_note_options(screen):
     high_c_surf = note_font.render('^C', 0, (0, 0, 0))
     high_c_rect = high_c_surf.get_rect(center=(350, 430))
     screen.blit(high_c_surf, high_c_rect)
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect, high_c_rect
+    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect, high_c_rect, octave_up_rect, octave_down_rect, octave_rect
     # (actually I don't have audio files for flats and sharps, so it's all natural for now)
 
 
@@ -270,18 +283,18 @@ if __name__ == '__main__':
                             screens = screens_temp
                     elif note_options[5].collidepoint(event.pos):
                         # clicked A
-                        sound = pygame.mixer.Sound('a5.mp3')
+                        sound = pygame.mixer.Sound('a4.mp3')
                         pygame.mixer.Sound.play(sound)
-                        sound = 'a5.mp3'
+                        sound = 'a4.mp3'
                         screens_temp = screens
                         screens = SoundArr.add_note(sound_arr, 'A', sound, screens, screen_num)
                         if screens is None:
                             screens = screens_temp
                     elif note_options[6].collidepoint(event.pos):
                         # clicked B
-                        sound = pygame.mixer.Sound('b5.mp3')
+                        sound = pygame.mixer.Sound('b4.mp3')
                         pygame.mixer.Sound.play(sound)
-                        sound = 'b5.mp3'
+                        sound = 'b4.mp3'
                         screens_temp = screens
                         screens = SoundArr.add_note(sound_arr, 'B', sound, screens, screen_num)
                         if screens is None:
@@ -320,6 +333,12 @@ if __name__ == '__main__':
                         screens = SoundArr.add_note(sound_arr, '^C', sound, screens, screen_num)
                         if screens is None:
                             screens = screens_temp
+                    elif note_options[11].collidepoint(event.pos):
+                        print('octave up')
+                    elif note_options[12].collidepoint(event.pos):
+                        print('octave down')
+                    elif note_options[13].collidepoint(event.pos):
+                        print('current octave')
                     """ maybe I could use this if I decide to add accidentals in later. 
                     I got rid of them because I didn't have the audio files for them though
                     

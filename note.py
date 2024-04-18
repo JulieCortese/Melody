@@ -1,14 +1,16 @@
 import pygame
+from musicpy import *
 from constants import *
 
 
 class Note:
-    def __init__(self, note, sound, row, col, screen):
+    def __init__(self, note, sound, row, col, screen ):
         self.note = note
         self.sound = sound
         self.row = row
         self.col = col
         self.screen = screen
+        # self.musnote = musnote
 
     def draw_note(self, screen):
         number_font = pygame.font.Font(None, 80)
