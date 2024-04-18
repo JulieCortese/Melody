@@ -92,6 +92,17 @@ def draw_note_options(screen):
     screen.blit(octave_down_img, (90, 360))
     octave_down_rect = octave_down_img.get_rect(topleft=(90, 360))
 
+    # and for the sharp flat and natural options
+    sharp_img = pygame.image.load('sharp.png')
+    screen.blit(sharp_img, (240, 360))
+    sharp_rect = sharp_img.get_rect(topleft=(240, 360))
+    natural_img = pygame.image.load('natural.png')
+    screen.blit(natural_img, (280, 360))
+    natural_rect = natural_img.get_rect(topleft=(280, 360))
+    flat_img = pygame.image.load('flat.png')
+    screen.blit(flat_img, (320, 365))
+    flat_rect = flat_img.get_rect(topleft=(320, 365))
+
     # make box for note options to be in
     pygame.draw.line(screen, (0, 0, 0), (20, 400), (580, 400))
     pygame.draw.line(screen, (0, 0, 0), (20, 400), (20, 460))
@@ -126,7 +137,9 @@ def draw_note_options(screen):
     high_c_surf = note_font.render('^C', 0, (0, 0, 0))
     high_c_rect = high_c_surf.get_rect(center=(350, 430))
     screen.blit(high_c_surf, high_c_rect)
-    return c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect, right_rect, high_c_rect, octave_up_rect, octave_down_rect, octave_rect
+    return (c_rect, d_rect, e_rect, f_rect, g_rect, a_rect, b_rect, rest_rect, left_rect,
+            right_rect, high_c_rect, octave_up_rect, octave_down_rect, sharp_rect, natural_rect,
+            flat_rect)
     # (actually I don't have audio files for flats and sharps, so it's all natural for now)
 
 
@@ -338,12 +351,8 @@ if __name__ == '__main__':
                     elif note_options[12].collidepoint(event.pos):
                         print('octave down')
                     elif note_options[13].collidepoint(event.pos):
-                        print('current octave')
-                    """ maybe I could use this if I decide to add accidentals in later. 
-                    I got rid of them because I didn't have the audio files for them though
-                    
-                    elif note_options[7].collidepoint(event.pos):
-                        print('clicked flat')
-                    elif note_options[8].collidepoint(event.pos):
-                        print('clicked sharp')
-                    """
+                        print('sharp')
+                    elif note_options[14].collidepoint(event.pos):
+                        print('natural')
+                    elif note_options[15].collidepoint(event.pos):
+                        print('flat')
